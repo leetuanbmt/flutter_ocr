@@ -1,0 +1,21 @@
+targets:
+  $default:
+    sources:
+      exclude:
+        - bin/*.dart
+    builders:
+      flutter_gen:
+        options:
+          output: lib/core/constants
+          assets:
+            outputs:
+              class_name: Assets
+              # style: camel-case
+              style: dot-delimiter
+          integrations:
+            flutter_svg: true
+          fonts:
+            outputs:
+              class_name: MyFontFamily
+            enabled: true
+          exclude: null
