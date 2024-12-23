@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/tuanvm/Desktop/flutter_ocr/android/app/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/tuanvm/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/tuanvm/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

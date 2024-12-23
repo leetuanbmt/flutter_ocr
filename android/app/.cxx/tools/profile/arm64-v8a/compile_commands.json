@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/arm64-v8a",
+  "command": "/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --sysroot=/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dpipeline_EXPORTS -I/Users/tuanvm/Desktop/flutter_ocr/android/app/../include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-limit-debug-info  -fPIC -o CMakeFiles/pipeline.dir/include/pipeline.h.o -c /Users/tuanvm/Desktop/flutter_ocr/android/app/include/pipeline.h",
+  "file": "/Users/tuanvm/Desktop/flutter_ocr/android/app/include/pipeline.h"
+},
+{
+  "directory": "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/arm64-v8a",
+  "command": "/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --sysroot=/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dpipeline_EXPORTS -I/Users/tuanvm/Desktop/flutter_ocr/android/app/../include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-limit-debug-info  -fPIC -o CMakeFiles/pipeline.dir/include/cls_process.h.o -c /Users/tuanvm/Desktop/flutter_ocr/android/app/include/cls_process.h",
+  "file": "/Users/tuanvm/Desktop/flutter_ocr/android/app/include/cls_process.h"
+},
+{
+  "directory": "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/arm64-v8a",
+  "command": "/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --sysroot=/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dpipeline_EXPORTS -I/Users/tuanvm/Desktop/flutter_ocr/android/app/../include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-limit-debug-info  -fPIC -o CMakeFiles/pipeline.dir/include/db_post_process.h.o -c /Users/tuanvm/Desktop/flutter_ocr/android/app/include/db_post_process.h",
+  "file": "/Users/tuanvm/Desktop/flutter_ocr/android/app/include/db_post_process.h"
+},
+{
+  "directory": "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/arm64-v8a",
+  "command": "/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --sysroot=/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dpipeline_EXPORTS -I/Users/tuanvm/Desktop/flutter_ocr/android/app/../include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-limit-debug-info  -fPIC -o CMakeFiles/pipeline.dir/include/det_process.h.o -c /Users/tuanvm/Desktop/flutter_ocr/android/app/include/det_process.h",
+  "file": "/Users/tuanvm/Desktop/flutter_ocr/android/app/include/det_process.h"
+},
+{
+  "directory": "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/arm64-v8a",
+  "command": "/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --sysroot=/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dpipeline_EXPORTS -I/Users/tuanvm/Desktop/flutter_ocr/android/app/../include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-limit-debug-info  -fPIC -o CMakeFiles/pipeline.dir/include/rec_process.h.o -c /Users/tuanvm/Desktop/flutter_ocr/android/app/include/rec_process.h",
+  "file": "/Users/tuanvm/Desktop/flutter_ocr/android/app/include/rec_process.h"
+},
+{
+  "directory": "/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/arm64-v8a",
+  "command": "/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --sysroot=/Users/tuanvm/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dpipeline_EXPORTS -I/Users/tuanvm/Desktop/flutter_ocr/android/app/../include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-limit-debug-info  -fPIC -o CMakeFiles/pipeline.dir/include/utils.h.o -c /Users/tuanvm/Desktop/flutter_ocr/android/app/include/utils.h",
+  "file": "/Users/tuanvm/Desktop/flutter_ocr/android/app/include/utils.h"
+}
+]
