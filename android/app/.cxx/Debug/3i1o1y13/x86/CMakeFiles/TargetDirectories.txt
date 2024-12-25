@@ -1,0 +1,2 @@
+/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/x86/CMakeFiles/edit_cache.dir
+/Users/tuanvm/Desktop/flutter_ocr/android/app/.cxx/Debug/3i1o1y13/x86/CMakeFiles/rebuild_cache.dir

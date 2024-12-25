@@ -1,0 +1,6 @@
+/Users/tuanvm/Desktop/flutter_ocr/android/app/include/pipeline.h
+/Users/tuanvm/Desktop/flutter_ocr/android/app/include/cls_process.h
+/Users/tuanvm/Desktop/flutter_ocr/android/app/include/db_post_process.h
+/Users/tuanvm/Desktop/flutter_ocr/android/app/include/det_process.h
+/Users/tuanvm/Desktop/flutter_ocr/android/app/include/rec_process.h
+/Users/tuanvm/Desktop/flutter_ocr/android/app/include/utils.h
