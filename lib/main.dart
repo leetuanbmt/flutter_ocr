@@ -18,10 +18,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Detecting text',
+      title: 'OCR Text Detection',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: const ColorScheme.light(
+          primary: Colors.teal,
+          secondary: Colors.tealAccent,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.teal,
+          actionsIconTheme: IconThemeData(color: Colors.white),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
+          titleTextStyle: TextStyle(color: Colors.white, fontSize: 24),
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -38,7 +48,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final ImagePicker _picker = ImagePicker();
-  final OcrPipeline _ocrPipeline = OcrPipeline();
   bool isLoading = false;
 
   Future<void> detectionText(ImageSource source) async {
@@ -51,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       isLoading = true;
     });
     try {
-      final ocrResult = await _ocrPipeline.processOcrImage(image.path);
+      final ocrResult = await OcrPipeline().processOcrImage(image.path);
       _checkFinish(ocrResult, image);
     } catch (e) {
       Logger.log(e);
@@ -66,14 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _checkFinish(OCRResult? ocrResult, XFile? image) {
     try {
       if (ocrResult == null || image == null) return;
-      final sizeImage = getSizeImage(image.path);
       if (!mounted) return;
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ResultScreen(
             result: ocrResult,
-            sizeImage: sizeImage,
             imagePath: image.path,
           ),
         ),
@@ -86,16 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _ocrPipeline.init();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Demo OCR app'),
+        title: const Text('OCR Text Detection'),
       ),
       body: Stack(
         children: [

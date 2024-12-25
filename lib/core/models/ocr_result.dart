@@ -6,19 +6,23 @@ part 'ocr_result.g.dart';
 
 @freezed
 class OCRResult with _$OCRResult {
-  const factory OCRResult({
-    List<Results>? results,
-  }) = _OCRResult;
-
   factory OCRResult.fromJson(Map<String, Object?> json) =>
       _$OCRResultFromJson(json);
+  const OCRResult._();
+  const factory OCRResult({
+    List<Results>? results,
+    @JsonKey(name: 'image_height') @Default(0) double height,
+    @JsonKey(name: 'image_width') @Default(0) double width,
+  }) = _OCRResult;
+
+  Size get sizeImage => Size(width, height);
 }
 
 @freezed
 class Results with _$Results {
   const Results._();
   const factory Results({
-    ///top left, top right, bot right, bot left
+    ///top left, top right, bottom right, bottom left
     List<List<int>>? box,
     double? confidence,
     String? text,

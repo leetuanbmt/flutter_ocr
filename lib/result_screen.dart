@@ -1,21 +1,21 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'core/models/ocr_result.dart';
-import 'logger.dart';
 
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends HookWidget {
   const ResultScreen({
     super.key,
     required this.result,
-    required this.sizeImage,
     required this.imagePath,
   });
   final OCRResult result;
-  final Size sizeImage;
+
   final String imagePath;
+
+  Size get sizeImage => result.sizeImage;
 
   double getScaleFactor(BoxConstraints constraints) {
     final size =
@@ -24,122 +24,98 @@ class ResultScreen extends StatelessWidget {
     return size.width / sizeImage.width;
   }
 
-  Map<String, double> convertBox(List<Offset> box) {
-    if (box.length != 4) {
-      throw ArgumentError('The list of points must contain 4 points.');
-    }
-
-    double minX = box.map((e) => e.dx).reduce(min);
-    double maxX = box.map((e) => e.dx).reduce(max);
-    double minY = box.map((e) => e.dy).reduce(min);
-
-    return {
-      'left': minX,
-      'top': minY,
-      'width': maxX - minX,
-      'height': box.map((e) => e.dy).reduce(max) - minY,
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
-    Logger.log('image size: $sizeImage');
-    Logger.log('result: ${result.toJson()}');
     final items = result.results ?? [];
+    final isVisibleImage = useState(true);
+    final isVisibleResult = useState(true);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: const Text('Result'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              isVisibleImage.value = !isVisibleImage.value;
+            },
+            icon: Icon(
+              isVisibleImage.value ? Icons.image : Icons.image_not_supported,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              isVisibleResult.value = !isVisibleResult.value;
+            },
+            icon: Icon(
+              isVisibleResult.value ? Icons.visibility : Icons.visibility_off,
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: LayoutBuilder(
           builder: (context, constraints) {
             final double scaleFactor = getScaleFactor(constraints);
-            Logger.log('ResultScreen: scaleFactor $scaleFactor');
-            return Stack(
-              children: [
-                Image.file(
-                  File(imagePath),
-                  width: sizeImage.width * scaleFactor,
-                  height: sizeImage.height * scaleFactor,
-                ),
-                ...items.map(
-                  (item) {
-                    final scaledTopLeft =
-                        item.topLeft.scale(scaleFactor, scaleFactor);
+            return SizedBox(
+              width: sizeImage.width * scaleFactor,
+              height: sizeImage.height * scaleFactor,
+              child: Stack(
+                children: [
+                  Visibility(
+                    visible: isVisibleImage.value,
+                    child: Image.file(
+                      File(imagePath),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  ...items.map(
+                    (item) {
+                      final topLeft =
+                          item.topLeft.scale(scaleFactor, scaleFactor);
 
-                    final scaledBottomRight =
-                        item.bottomRight.scale(scaleFactor, scaleFactor);
+                      final bottomRight =
+                          item.bottomRight.scale(scaleFactor, scaleFactor);
 
-                    return Positioned(
-                      top: scaledTopLeft.dy,
-                      left: scaledTopLeft.dx,
-                      child: Container(
-                        width: scaledBottomRight.dx - scaledTopLeft.dx,
-                        height: scaledBottomRight.dy - scaledTopLeft.dy,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.red),
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            item.text ?? '',
-                            style: const TextStyle(color: Colors.red),
+                      final width = bottomRight.dx - topLeft.dx;
+
+                      final height = bottomRight.dy - topLeft.dy;
+
+                      return Visibility(
+                        visible: isVisibleResult.value,
+                        child: Positioned(
+                          top: topLeft.dy - 1,
+                          left: topLeft.dx - 1,
+                          child: SizedBox(
+                            width: width + 2,
+                            height: height + 2,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red),
+                                color: isVisibleImage.value
+                                    ? Colors.black.withOpacity(0.2)
+                                    : Colors.transparent,
+                              ),
+                              child: FittedBox(
+                                child: SelectableText(
+                                  item.text ?? '',
+                                  style: TextStyle(
+                                    color: isVisibleImage.value
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             );
           },
         ),
       ),
     );
-  }
-}
-
-class OCRResultPainter extends CustomPainter {
-  OCRResultPainter(this.results);
-  final List<Results> results;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.red
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0;
-
-    for (var result in results) {
-      // Vẽ bounding box
-      final path = Path();
-      path.moveTo(result.box![0][0].toDouble(), result.box![0][1].toDouble());
-      path.lineTo(result.box![1][0].toDouble(), result.box![1][1].toDouble());
-      path.lineTo(result.box![2][0].toDouble(), result.box![2][1].toDouble());
-      path.lineTo(result.box![3][0].toDouble(), result.box![3][1].toDouble());
-      path.close();
-      canvas.drawPath(path, paint);
-
-      // Vẽ text
-      final textPainter = TextPainter(
-        text: TextSpan(
-          text: result.text,
-          style: const TextStyle(color: Colors.red, fontSize: 16.0),
-        ),
-        textDirection: TextDirection.ltr,
-      );
-      textPainter.layout();
-      textPainter.paint(
-        canvas,
-        Offset(result.box![0][0].toDouble(), result.box![0][1].toDouble() - 20),
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(OCRResultPainter oldDelegate) {
-    return oldDelegate.results != results;
   }
 }

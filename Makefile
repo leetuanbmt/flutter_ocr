@@ -1,5 +1,10 @@
-run:
+gen:
 		flutter pub run build_runner build -d
 
-locale:
-		dart run bin/generate.dart
+run_build:
+		flutter build apk --no-tree-shake-icons
+
+run: 
+		flutter run --profile
+
+		

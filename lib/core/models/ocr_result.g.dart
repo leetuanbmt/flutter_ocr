@@ -11,11 +11,15 @@ _$OCRResultImpl _$$OCRResultImplFromJson(Map<String, dynamic> json) =>
       results: (json['results'] as List<dynamic>?)
           ?.map((e) => Results.fromJson(e as Map<String, dynamic>))
           .toList(),
+      height: (json['image_height'] as num?)?.toDouble() ?? 0,
+      width: (json['image_width'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$OCRResultImplToJson(_$OCRResultImpl instance) =>
     <String, dynamic>{
       'results': instance.results,
+      'image_height': instance.height,
+      'image_width': instance.width,
     };
 
 _$ResultsImpl _$$ResultsImplFromJson(Map<String, dynamic> json) =>

@@ -21,6 +21,10 @@ OCRResult _$OCRResultFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OCRResult {
   List<Results>? get results => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_height')
+  double get height => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_width')
+  double get width => throw _privateConstructorUsedError;
 
   /// Serializes this OCRResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +41,10 @@ abstract class $OCRResultCopyWith<$Res> {
   factory $OCRResultCopyWith(OCRResult value, $Res Function(OCRResult) then) =
       _$OCRResultCopyWithImpl<$Res, OCRResult>;
   @useResult
-  $Res call({List<Results>? results});
+  $Res call(
+      {List<Results>? results,
+      @JsonKey(name: 'image_height') double height,
+      @JsonKey(name: 'image_width') double width});
 }
 
 /// @nodoc
@@ -56,12 +63,22 @@ class _$OCRResultCopyWithImpl<$Res, $Val extends OCRResult>
   @override
   $Res call({
     Object? results = freezed,
+    Object? height = null,
+    Object? width = null,
   }) {
     return _then(_value.copyWith(
       results: freezed == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Results>?,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -74,7 +91,10 @@ abstract class _$$OCRResultImplCopyWith<$Res>
       __$$OCRResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Results>? results});
+  $Res call(
+      {List<Results>? results,
+      @JsonKey(name: 'image_height') double height,
+      @JsonKey(name: 'image_width') double width});
 }
 
 /// @nodoc
@@ -91,20 +111,35 @@ class __$$OCRResultImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? results = freezed,
+    Object? height = null,
+    Object? width = null,
   }) {
     return _then(_$OCRResultImpl(
       results: freezed == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Results>?,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$OCRResultImpl implements _OCRResult {
-  const _$OCRResultImpl({final List<Results>? results}) : _results = results;
+class _$OCRResultImpl extends _OCRResult {
+  const _$OCRResultImpl(
+      {final List<Results>? results,
+      @JsonKey(name: 'image_height') this.height = 0,
+      @JsonKey(name: 'image_width') this.width = 0})
+      : _results = results,
+        super._();
 
   factory _$OCRResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$OCRResultImplFromJson(json);
@@ -120,8 +155,15 @@ class _$OCRResultImpl implements _OCRResult {
   }
 
   @override
+  @JsonKey(name: 'image_height')
+  final double height;
+  @override
+  @JsonKey(name: 'image_width')
+  final double width;
+
+  @override
   String toString() {
-    return 'OCRResult(results: $results)';
+    return 'OCRResult(results: $results, height: $height, width: $width)';
   }
 
   @override
@@ -129,13 +171,15 @@ class _$OCRResultImpl implements _OCRResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OCRResultImpl &&
-            const DeepCollectionEquality().equals(other._results, _results));
+            const DeepCollectionEquality().equals(other._results, _results) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.width, width) || other.width == width));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_results), height, width);
 
   /// Create a copy of OCRResult
   /// with the given fields replaced by the non-null parameter values.
@@ -153,14 +197,24 @@ class _$OCRResultImpl implements _OCRResult {
   }
 }
 
-abstract class _OCRResult implements OCRResult {
-  const factory _OCRResult({final List<Results>? results}) = _$OCRResultImpl;
+abstract class _OCRResult extends OCRResult {
+  const factory _OCRResult(
+      {final List<Results>? results,
+      @JsonKey(name: 'image_height') final double height,
+      @JsonKey(name: 'image_width') final double width}) = _$OCRResultImpl;
+  const _OCRResult._() : super._();
 
   factory _OCRResult.fromJson(Map<String, dynamic> json) =
       _$OCRResultImpl.fromJson;
 
   @override
   List<Results>? get results;
+  @override
+  @JsonKey(name: 'image_height')
+  double get height;
+  @override
+  @JsonKey(name: 'image_width')
+  double get width;
 
   /// Create a copy of OCRResult
   /// with the given fields replaced by the non-null parameter values.
