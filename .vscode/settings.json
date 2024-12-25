@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "/Users/tuanvm/Desktop/flutter_ocr/android/app"
+    "cmake.sourceDirectory": "/Users/tuanvm/Desktop/flutter_ocr/android/app",
+    "cSpell.words": [
+        "malloc"
+    ]
 }

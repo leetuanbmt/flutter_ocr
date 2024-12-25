@@ -34,6 +34,13 @@ struct OCRResult {
     std::vector<float> scores;  // Confidence scores for each text
 };
 
+// C-compatible structure to hold OCR result
+struct OCRResultC {
+    const char* text;  // Recognized text
+    float score;       // Confidence score
+};
+
+
 class Pipeline {
 public:
   Pipeline(const std::string &detModelDir, const std::string &clsModelDir,
@@ -84,11 +91,26 @@ private:
   std::shared_ptr<RecPredictor> recPredictor_;
 };
 
-Pipeline* initPipeline(const std::string& detModelDir,
-                       const std::string& clsModelDir,
-                       const std::string& recModelDir,
-                       const std::string& cPUPowerMode,
-                       int cPUThreadNum,
-                       const std::string& config_path,
-                       const std::string& dict_path);
-OCRResult processImage(Pipeline* pipeline, const std::string& imagePath);
+
+
+
+// Expose C-compatible functions
+extern "C" {
+
+// Global pointer to the Pipeline instance (to be used across the program)
+extern Pipeline* globalPipeline;
+
+// Function to initialize the global Pipeline
+__attribute__((visibility("default"))) bool initGlobalPipeline(const char* detModelDir, const char* clsModelDir, 
+                                                               const char* recModelDir, const char* cPUPowerMode, 
+                                                               int cPUThreadNum, const char* configPath, 
+                                                               const char* vocabFile);
+
+// Function to process an image using the global Pipeline
+__attribute__((visibility("default"))) OCRResult* processImageGlobal(const char* imagePath);
+
+// Function to release the global Pipeline
+__attribute__((visibility("default"))) void releasePipeline(Pipeline* pipeline);
+
+} 
+

@@ -27,7 +27,9 @@ android {
         targetSdk = 33
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
         
     }
 
@@ -44,10 +46,6 @@ android {
             jniLibs.srcDirs += ['src/main/jniLibs']
         }
   } 
-    // packagingOptions {
-    //         pickFirst 'lib/arm64-v8a/libpaddle_light_api_shared.so'
-    //         pickFirst 'lib/arm64-v8a/libpipeline.so'
-    //     }
 
     defaultConfig {
         externalNativeBuild {

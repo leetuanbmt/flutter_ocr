@@ -1,0 +1,12 @@
+{
+    "words": [
+        "libpipeline"
+    ],
+    "ignorePaths": [
+        "*.g.dart",
+        "*.gen.dart",
+        ".pub-cache",
+    ],
+    "language": "en",
+    "files": []
+}
